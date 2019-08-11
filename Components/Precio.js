@@ -1,38 +1,43 @@
 const Precio = props => {
+    // console.log(props);
+
     const {
-        price,
-        percent_change_1h,
-        percent_change_7d,
-        percent_change_24h
+        quote,
+        last_updated
     } = props.precio;
 
     // Obtenemos el precio y lo dejamos solo a dos decimales
-    const precio = price.toFixed(2);
+    const precio = Number.parseFloat(quote.USD.price).toFixed(2);
 
     return (
         <div className="card text-white bg-danger mb-3">
             <div className="card-header">Precio de Bitcoin</div>
             <div className="card-body">
                 <h4 className="card-title">Precio actual: {precio} U$D</h4>
+                <p className="card-text">
+                    <small className="font-weight-light font-italic">
+                        Last updated {last_updated}
+                    </small>
+                </p>
                 <div className="d-md-flex justify-content-between">
                     <p className="card-text">
                         {" "}
                         <span className="font-weight-bold">Ultima hora: </span>
-                        {percent_change_1h}%
+                        {quote.USD.percent_change_1h}%
                     </p>
                     <p className="card-text">
                         {" "}
                         <span className="font-weight-bold">
                             Ultima 24 hora:{" "}
                         </span>
-                        {percent_change_24h}%
+                        {quote.USD.percent_change_24h}%
                     </p>
                     <p className="card-text">
                         {" "}
                         <span className="font-weight-bold">
                             Ultimos 7 días:{" "}
                         </span>
-                        {percent_change_7d}%
+                        {quote.USD.percent_change_7d}%
                     </p>
                 </div>
             </div>
